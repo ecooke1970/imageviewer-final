@@ -31,7 +31,7 @@ public class RedChannel extends Filter
             for(int x = 0;x < width;x++)
             {
                 Color pix = image.getPixel(x, y);
-                image.setPixel(x, y, new Color(pix.getRed(), 0, 0));
+                image.setPixel(x, y, new Color(pix.getRed(), pix.getRed(), pix.getRed()));
             }
         }
     }

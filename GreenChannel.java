@@ -31,7 +31,7 @@ public class GreenChannel extends Filter
             for(int x = 0;x < width;x++)
             {
                 Color pix = image.getPixel(x, y);
-                image.setPixel(x, y, new Color(0, pix.getGreen(), 0));
+                image.setPixel(x, y, new Color(pix.getGreen(), pix.getGreen(), pix.getGreen()));
             }
         }
     }

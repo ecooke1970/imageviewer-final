@@ -1,18 +1,18 @@
 import java.awt.Color;
 
 /**
- * Write a description of class BlueChannel here.
+ * Write a description of class RedTint here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class BlueChannel extends Filter
+public class RedTint extends Filter
 {
     /**
-     * Constructor for objects of class BlueChannel.
+     * Constructor for objects of class RedTint.
      * @param name The name of the filter.
      */
-    public BlueChannel(String name)
+    public RedTint(String name)
     {
         super(name);
     }
@@ -31,7 +31,7 @@ public class BlueChannel extends Filter
             for(int x = 0;x < width;x++)
             {
                 Color pix = image.getPixel(x, y);
-                image.setPixel(x, y, new Color(pix.getBlue(), pix.getBlue(), pix.getBlue()));
+                image.setPixel(x, y, new Color(pix.getRed(), 0, 0));
             }
         }
     }
