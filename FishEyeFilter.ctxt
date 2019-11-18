@@ -1,11 +1,16 @@
 #BlueJ class context
-comment0.params=name
-comment0.target=FishEyeFilter(java.lang.String)
-comment0.text=\n\ Constructor\ for\ objects\ of\ class\ LensFilter.\n\ @param\ name\ The\ name\ of\ the\ filter.\n
-comment1.params=width
-comment1.target=int[]\ computeXArray(int)
-comment1.text=\n\ Compute\ and\ return\ an\ array\ of\ horizontal\ offsets\ for\ each\ pixel\ column.\n\ These\ can\ then\ be\ applied\ as\ the\ horizontal\ offset\ for\ each\ pixel.\n
-comment2.params=height
-comment2.target=int[]\ computeYArray(int)
-comment2.text=\n\ Compute\ and\ return\ an\ array\ of\ vertical\ offsets\ for\ each\ pixel\ row.\n\ These\ can\ then\ be\ applied\ as\ the\ vertical\ offset\ for\ each\ pixel.\n
-numComments=3
+comment0.target=FishEyeFilter
+comment0.text=\r\n\ An\ image\ filter\ to\ create\ an\ effect\ similar\ to\ a\ fisheye\ camera\ lens.\r\n\ (Works\ especially\ well\ on\ portraits.)\r\n\ \r\n\ @author\ Michael\ K\u00F6lling\ and\ David\ J.\ Barnes.\r\n\ @version\ 1.0\r\n
+comment1.params=name
+comment1.target=FishEyeFilter(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ LensFilter.\r\n\ @param\ name\ The\ name\ of\ the\ filter.\r\n
+comment2.params=image
+comment2.target=void\ apply(OFImage)
+comment2.text=\r\n\ Apply\ this\ filter\ to\ an\ image.\r\n\ \r\n\ @param\ \ image\ \ The\ image\ to\ be\ changed\ by\ this\ filter.\r\n
+comment3.params=width
+comment3.target=int[]\ computeXArray(int)
+comment3.text=\r\n\ Compute\ and\ return\ an\ array\ of\ horizontal\ offsets\ for\ each\ pixel\ column.\r\n\ These\ can\ then\ be\ applied\ as\ the\ horizontal\ offset\ for\ each\ pixel.\r\n
+comment4.params=height
+comment4.target=int[]\ computeYArray(int)
+comment4.text=\r\n\ Compute\ and\ return\ an\ array\ of\ vertical\ offsets\ for\ each\ pixel\ row.\r\n\ These\ can\ then\ be\ applied\ as\ the\ vertical\ offset\ for\ each\ pixel.\r\n
+numComments=5

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=BlueChannel
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ BlueChannel\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name
+comment1.target=BlueChannel(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ BlueChannel.\r\n\ @param\ name\ The\ name\ of\ the\ filter.\r\n
+comment2.params=image
+comment2.target=void\ apply(OFImage)
+comment2.text=\r\n\ Apply\ this\ filter\ to\ an\ image.\r\n\r\n\ @param\ \ image\ The\ image\ to\ be\ changed\ by\ the\ filter.\r\n
+numComments=3
