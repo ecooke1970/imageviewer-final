@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * ImageViewer is the main class of the image viewer application. It builds and
@@ -36,12 +37,15 @@ public class ImageViewer
     
     private List<Filter> filters;
     
+    private Stack<OFImage> undoStack;
+    
     /**
      * Create an ImageViewer and display its GUI on screen.
      */
     public ImageViewer()
     {
         currentImage = null;
+        undoStack = new Stack<OFImage>();
         filters = createFilters();
         makeFrame();
     }
@@ -87,6 +91,7 @@ public class ImageViewer
         imagePanel.clearImage();
         showFilename(null);
         setButtonsEnabled(false);
+        undoStack = null;
     }
 
     /**
@@ -123,6 +128,9 @@ public class ImageViewer
     private void applyFilter(Filter filter)
     {
         if(currentImage != null) {
+            // add currentImage to undoStack before making a change.
+            undoStack.push(currentImage);
+            
             filter.apply(currentImage);
             frame.repaint();
             showStatus("Applied: " + filter.getName());
@@ -149,6 +157,9 @@ public class ImageViewer
     private void makeLarger()
     {
         if(currentImage != null) {
+            // add currentImage to undoStack before making a change.
+            undoStack.push(currentImage);
+            
             // create new image with double size
             int width = currentImage.getWidth();
             int height = currentImage.getHeight();
@@ -178,6 +189,9 @@ public class ImageViewer
     private void makeSmaller()
     {
         if(currentImage != null) {
+            // add currentImage to undoStack before making a change.
+            undoStack.push(currentImage);
+            
             // create new image with double size
             int width = currentImage.getWidth() / 2;
             int height = currentImage.getHeight() / 2;
@@ -195,6 +209,19 @@ public class ImageViewer
             frame.pack();
         }
     }
+        
+     /**
+     * 
+     */
+    private void undo()
+    {
+        if(!undoStack.empty())
+        {
+            currentImage = undoStack.pop();
+            imagePanel.setImage(currentImage);
+            frame.pack();
+        }
+    }    
     
     // ---- support methods ----
 
@@ -223,7 +250,6 @@ public class ImageViewer
     {
         statusLabel.setText(text);
     }
-    
     
     /**
      * Enable or disable all toolbar buttons.
@@ -366,6 +392,15 @@ public class ImageViewer
         item = new JMenuItem("Quit");
             item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
             item.addActionListener(e -> quit());
+        menu.add(item);
+        
+        // create the Edit menu
+        menu = new JMenu("Edit");
+        menubar.add(menu);
+        
+        item = new JMenuItem("Undo");
+            item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, SHORTCUT_MASK));
+            item.addActionListener(e -> undo());
         menu.add(item);
 
 
