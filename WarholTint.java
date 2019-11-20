@@ -37,9 +37,13 @@ public class WarholTint extends Filter
             {
                 Color pix = original.getPixel(x * 2, y * 2);
                 image.setPixel(x, y, original.getPixel(x * 2, y * 2));
+                // Copies original image at quarter size
                 image.setPixel(x + (width / 2), y, new Color(pix.getRed(), 0, 0));
+                // Copies original image at quarter size using red tint
                 image.setPixel(x, y + (height / 2), new Color(0, pix.getGreen(), 0));
+                // Copies original image at quarter size using green tint
                 image.setPixel(x + (width / 2), y + (height / 2), new Color(0, 0, pix.getBlue()));
+                // Copies original image at quarter size using blue tint
             }
         }
     }

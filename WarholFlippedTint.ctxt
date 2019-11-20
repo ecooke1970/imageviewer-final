@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=WarholFlippedTint
-comment0.text=\r\n\ Class\ WarholFlippedTint\ creates\ 4\ quarter\ sized\ images\ of\ the\ original\ in\ the\ format\:\r\n\ Original\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /\ Red\ Channel\ Mirrored\ Horizontally\r\n\ Green\ Channel\ Mirrored\ Vertically\ /\ Blue\ Channel\ Mirrored\ Horiz\ and\ Vert\r\n\r\n\ @author\ Erik\ Cooke\r\n\ @version\ 2019.11.18\r\n
+comment0.text=\r\n\ Class\ WarholFlippedTint\ creates\ 4\ quarter\ sized\ images\ of\ the\ original\ in\ the\ format\:\r\n\ Original\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /\ Red\ Tint\ Mirrored\ Horizontally\r\n\ Green\ Tint\ Mirrored\ Vertically\ /\ Blue\ Tint\ Mirrored\ Horiz\ and\ Vert\r\n\r\n\ @author\ Erik\ Cooke\r\n\ @version\ 2019.11.18\r\n
 comment1.params=name
 comment1.target=WarholFlippedTint(java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ WarholFlippedTint\r\n\ @param\ name\ Name\ of\ this\ filter\r\n
