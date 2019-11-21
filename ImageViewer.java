@@ -36,12 +36,13 @@ public class ImageViewer
     private JLabel statusLabel;
     private JButton smallerButton;
     private JButton largerButton;
-    private JButton rotateClockwise;
-    private JButton rotateCounterClockwise;
+    private JButton undoButton;
+    private JButton rotateRight;
+    private JButton rotateLeft;
     private OFImage currentImage;
     private JMenuItem undoItem;
-    private JMenuItem rotateClockwiseMenu;
-    private JMenuItem rotateCounterClockwiseMenu;
+    private JMenuItem rotateRightMenu;
+    private JMenuItem rotateLeftMenu;
     
     private List<Filter> filters;
     
@@ -226,7 +227,7 @@ public class ImageViewer
     /**
      * Rotates current image 90 degrees to the right
      */
-    private void rotateClockwise()
+    private void rotateRight()
     {
         if(currentImage != null)
         {
@@ -253,7 +254,7 @@ public class ImageViewer
     /**
      * Rotates current image 90 degrees to the left.
      */
-    private void rotateCounterClockwise()
+    private void rotateLeft()
     {
         if(currentImage != null)
         {
@@ -331,10 +332,10 @@ public class ImageViewer
     {
         smallerButton.setEnabled(status);
         largerButton.setEnabled(status);
-        rotateClockwise.setEnabled(status);
-        rotateCounterClockwise.setEnabled(status);
-        rotateCounterClockwiseMenu.setEnabled(status);
-        rotateClockwiseMenu.setEnabled(status);
+        rotateRight.setEnabled(status);
+        rotateLeft.setEnabled(status);
+        rotateLeftMenu.setEnabled(status);
+        rotateRightMenu.setEnabled(status);        
     }
     
     /**
@@ -344,6 +345,7 @@ public class ImageViewer
     private void setUndoItemEnabled(boolean status)
     {
         undoItem.setEnabled(status);
+        undoButton.setEnabled(status);
     }
     
     
@@ -419,13 +421,17 @@ public class ImageViewer
         largerButton.addActionListener(e -> makeLarger());
         toolbar.add(largerButton);
         
-        rotateClockwise = new JButton("Rotate Clockwise");
-        rotateClockwise.addActionListener(e -> rotateClockwise());
-        toolbar.add(rotateClockwise);
+        rotateRight = new JButton("Rotate Right");
+        rotateRight.addActionListener(e -> rotateRight());
+        toolbar.add(rotateRight);
         
-        rotateCounterClockwise = new JButton("Rotate Counter Clockwise");
-        rotateCounterClockwise.addActionListener(e -> rotateCounterClockwise());
-        toolbar.add(rotateCounterClockwise);
+        rotateLeft = new JButton("Rotate Left");
+        rotateLeft.addActionListener(e -> rotateLeft());
+        toolbar.add(rotateLeft);
+        
+        undoButton = new JButton("Undo");
+        undoButton.addActionListener(e -> undo());
+        toolbar.add(undoButton);
 
         // Add toolbar into panel with flow layout for spacing
         JPanel flow = new JPanel();
@@ -436,6 +442,7 @@ public class ImageViewer
         // building is done - arrange the components      
         showFilename(null);
         setButtonsEnabled(false);
+        setUndoItemEnabled(false);
         frame.pack();
         
         // place the frame at the center of the screen and show
@@ -490,21 +497,19 @@ public class ImageViewer
         menu = new JMenu("Edit");
         menubar.add(menu);
         
-        rotateClockwiseMenu = new JMenuItem("Rotate Clockwise");
-            rotateClockwiseMenu.addActionListener(e -> rotateClockwise());
-        menu.add(rotateClockwiseMenu);
+        rotateRightMenu = new JMenuItem("Rotate Right");
+            rotateRightMenu.addActionListener(e -> rotateRight());
+        menu.add(rotateRightMenu);
         
-        rotateCounterClockwiseMenu = new JMenuItem("Rotate CounterClockwise");
-            rotateCounterClockwiseMenu.addActionListener(e -> rotateCounterClockwise());
-        menu.add(rotateCounterClockwiseMenu);
+        rotateLeftMenu = new JMenuItem("Rotate Left");
+            rotateLeftMenu.addActionListener(e -> rotateLeft());
+        menu.add(rotateLeftMenu);
         
         menu.addSeparator();
         undoItem = new JMenuItem("Undo");
             undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, SHORTCUT_MASK));
             undoItem.addActionListener(e -> undo());
         menu.add(undoItem);
-        setUndoItemEnabled(false);
-
 
         // create the Filter menu
         menu = new JMenu("Filter");
