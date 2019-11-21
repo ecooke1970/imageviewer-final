@@ -420,6 +420,10 @@ public class ImageViewer
         menu = new JMenu("Edit");
         menubar.add(menu);
         
+        item = new JMenuItem("Rotate Clockwise");
+            item.addActionListener(e -> applyFilter(new RotateClockwise("Rotate Clockwise")));
+        
+        menu.addSeparator();
         undoItem = new JMenuItem("Undo");
             undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, SHORTCUT_MASK));
             undoItem.addActionListener(e -> undo());
