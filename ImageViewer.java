@@ -17,6 +17,9 @@ import java.util.Stack;
  * 
  * To start the application, create an object of this class.
  * 
+ * @author Erik Cooke
+ * @version 2019.11.21
+ * 
  * @author Michael Kölling and David J. Barnes.
  * @version 3.1
  */
@@ -34,6 +37,7 @@ public class ImageViewer
     private JButton smallerButton;
     private JButton largerButton;
     private OFImage currentImage;
+    private JMenuItem undoItem;
     
     private List<Filter> filters;
     
@@ -91,7 +95,8 @@ public class ImageViewer
         imagePanel.clearImage();
         showFilename(null);
         setButtonsEnabled(false);
-        undoStack = null;
+        undoStack.clear();
+        setUndoItemEnabled(false);
     }
 
     /**
@@ -131,6 +136,7 @@ public class ImageViewer
             // add currentImage to undoStack before making a change.
             OFImage tempImage = new OFImage(currentImage);
             undoStack.push(tempImage);
+            setUndoItemEnabled(true);
             
             filter.apply(currentImage);
             frame.repaint();
@@ -160,6 +166,7 @@ public class ImageViewer
         if(currentImage != null) {
             // add currentImage to undoStack before making a change.
             undoStack.push(currentImage);
+            setUndoItemEnabled(true);
             
             // create new image with double size
             int width = currentImage.getWidth();
@@ -192,6 +199,7 @@ public class ImageViewer
         if(currentImage != null) {
             // add currentImage to undoStack before making a change.
             undoStack.push(currentImage);
+            setUndoItemEnabled(true);
             
             // create new image with double size
             int width = currentImage.getWidth() / 2;
@@ -211,14 +219,18 @@ public class ImageViewer
         }
     }
         
-     /**
-     * 
+    /**
+     * Loads the previous image before the latest change.
      */
     private void undo()
     {
         if(!undoStack.empty())
         {
             currentImage = undoStack.pop();
+            if(undoStack.empty())
+            {
+                setUndoItemEnabled(false);
+            }
             imagePanel.setImage(currentImage);
             frame.pack();
         }
@@ -261,6 +273,15 @@ public class ImageViewer
     {
         smallerButton.setEnabled(status);
         largerButton.setEnabled(status);
+    }
+    
+    /**
+     * Enable or disable the undo menu item
+     * @param status 'true' to enable, 'false' to disable undo menu item.
+     */
+    private void setUndoItemEnabled(boolean status)
+    {
+        undoItem.setEnabled(status);
     }
     
     
@@ -399,10 +420,11 @@ public class ImageViewer
         menu = new JMenu("Edit");
         menubar.add(menu);
         
-        item = new JMenuItem("Undo");
-            item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, SHORTCUT_MASK));
-            item.addActionListener(e -> undo());
-        menu.add(item);
+        undoItem = new JMenuItem("Undo");
+            undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, SHORTCUT_MASK));
+            undoItem.addActionListener(e -> undo());
+        menu.add(undoItem);
+        setUndoItemEnabled(false);
 
 
         // create the Filter menu
