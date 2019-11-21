@@ -129,7 +129,8 @@ public class ImageViewer
     {
         if(currentImage != null) {
             // add currentImage to undoStack before making a change.
-            undoStack.push(currentImage);
+            OFImage tempImage = new OFImage(currentImage);
+            undoStack.push(tempImage);
             
             filter.apply(currentImage);
             frame.repaint();
