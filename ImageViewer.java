@@ -36,8 +36,12 @@ public class ImageViewer
     private JLabel statusLabel;
     private JButton smallerButton;
     private JButton largerButton;
+    private JButton rotateClockwise;
+    private JButton rotateCounterClockwise;
     private OFImage currentImage;
     private JMenuItem undoItem;
+    private JMenuItem rotateClockwiseMenu;
+    private JMenuItem rotateCounterClockwiseMenu;
     
     private List<Filter> filters;
     
@@ -218,6 +222,60 @@ public class ImageViewer
             frame.pack();
         }
     }
+    
+    /**
+     * Rotates current image 90 degrees to the right
+     */
+    private void rotateClockwise()
+    {
+        if(currentImage != null)
+        {
+            // add currentImage to undoStack before making a change.
+            undoStack.push(currentImage);
+            setUndoItemEnabled(true);
+            
+            int width = currentImage.getWidth();
+            int height = currentImage.getHeight();
+            OFImage original = new OFImage(height, width);
+            for(int y = 0; y < height; y++)
+            {
+                for(int x = 0; x < width; x++)
+                {
+                    original.setPixel(height - 1 - y, x, currentImage.getPixel(x, y));
+                }
+            }
+            currentImage = original;
+            imagePanel.setImage(currentImage);
+            frame.pack();
+        }
+    }
+    
+    /**
+     * Rotates current image 90 degrees to the left.
+     */
+    private void rotateCounterClockwise()
+    {
+        if(currentImage != null)
+        {
+            // add currentImage to undoStack before making a change.
+            undoStack.push(currentImage);
+            setUndoItemEnabled(true);
+            
+            int width = currentImage.getWidth();
+            int height = currentImage.getHeight();
+            OFImage original = new OFImage(height, width);
+            for(int y = 0; y < height; y++)
+            {
+                for(int x = 0; x < width; x++)
+                {
+                    original.setPixel(y, width - 1 - x, currentImage.getPixel(x, y));
+                }
+            }
+            currentImage = original;
+            imagePanel.setImage(currentImage);
+            frame.pack();
+        }
+    }
         
     /**
      * Loads the previous image before the latest change.
@@ -273,6 +331,10 @@ public class ImageViewer
     {
         smallerButton.setEnabled(status);
         largerButton.setEnabled(status);
+        rotateClockwise.setEnabled(status);
+        rotateCounterClockwise.setEnabled(status);
+        rotateCounterClockwiseMenu.setEnabled(status);
+        rotateClockwiseMenu.setEnabled(status);
     }
     
     /**
@@ -356,6 +418,14 @@ public class ImageViewer
         largerButton = new JButton("Larger");
         largerButton.addActionListener(e -> makeLarger());
         toolbar.add(largerButton);
+        
+        rotateClockwise = new JButton("Rotate Clockwise");
+        rotateClockwise.addActionListener(e -> rotateClockwise());
+        toolbar.add(rotateClockwise);
+        
+        rotateCounterClockwise = new JButton("Rotate Counter Clockwise");
+        rotateCounterClockwise.addActionListener(e -> rotateCounterClockwise());
+        toolbar.add(rotateCounterClockwise);
 
         // Add toolbar into panel with flow layout for spacing
         JPanel flow = new JPanel();
@@ -420,8 +490,13 @@ public class ImageViewer
         menu = new JMenu("Edit");
         menubar.add(menu);
         
-        item = new JMenuItem("Rotate Clockwise");
-            item.addActionListener(e -> applyFilter(new RotateClockwise("Rotate Clockwise")));
+        rotateClockwiseMenu = new JMenuItem("Rotate Clockwise");
+            rotateClockwiseMenu.addActionListener(e -> rotateClockwise());
+        menu.add(rotateClockwiseMenu);
+        
+        rotateCounterClockwiseMenu = new JMenuItem("Rotate CounterClockwise");
+            rotateCounterClockwiseMenu.addActionListener(e -> rotateCounterClockwise());
+        menu.add(rotateCounterClockwiseMenu);
         
         menu.addSeparator();
         undoItem = new JMenuItem("Undo");
