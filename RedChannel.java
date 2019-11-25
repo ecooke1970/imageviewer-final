@@ -1,10 +1,10 @@
 import java.awt.Color;
 
 /**
- * Write a description of class RedChannel here.
+ * Creates a red channel version of the image.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Erik Cooke)
+ * @version (2019.11.18)
  */
 public class RedChannel extends Filter
 {

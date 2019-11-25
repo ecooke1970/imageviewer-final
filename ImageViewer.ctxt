@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=ImageViewer
-comment0.text=\r\n\ ImageViewer\ is\ the\ main\ class\ of\ the\ image\ viewer\ application.\ It\ builds\ and\r\n\ displays\ the\ application\ GUI\ and\ initialises\ all\ other\ components.\r\n\ \r\n\ To\ start\ the\ application,\ create\ an\ object\ of\ this\ class.\r\n\ \r\n\ @author\ Erik\ Cooke\r\n\ @version\ 2019.11.21\r\n\ \r\n\ @author\ Michael\ K\u00F6lling\ and\ David\ J.\ Barnes.\r\n\ @version\ 3.1\r\n
+comment0.text=\r\n\ ImageViewer\ is\ the\ main\ class\ of\ the\ image\ viewer\ application.\ It\ builds\ and\r\n\ displays\ the\ application\ GUI\ and\ initialises\ all\ other\ components.\r\n\ \r\n\ To\ start\ the\ application,\ create\ an\ object\ of\ this\ class.\r\n\ \r\n\ @author\ Erik\ Cooke\r\n\ @version\ 2019.11.21\r\n\ Added\ undo\ function,\ rotate\ right\ and\ rotate\ left\ functions.\r\n\ \r\n\ @author\ Michael\ K\u00F6lling\ and\ David\ J.\ Barnes.\r\n\ @version\ 3.1\r\n
 comment1.params=
 comment1.target=ImageViewer()
 comment1.text=\r\n\ Create\ an\ ImageViewer\ and\ display\ its\ GUI\ on\ screen.\r\n

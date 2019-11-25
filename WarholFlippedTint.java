@@ -2,7 +2,7 @@ import java.awt.Color;
 
 /**
  * Class WarholFlippedTint creates 4 quarter sized images of the original in the format:
- * Original                          / Red Tint Mirrored Horizontally
+ * Original                       / Red Tint Mirrored Horizontally
  * Green Tint Mirrored Vertically / Blue Tint Mirrored Horiz and Vert
  *
  * @author Erik Cooke

@@ -19,6 +19,7 @@ import java.util.Stack;
  * 
  * @author Erik Cooke
  * @version 2019.11.21
+ * Added undo function, rotate right and rotate left functions.
  * 
  * @author Michael Kölling and David J. Barnes.
  * @version 3.1
